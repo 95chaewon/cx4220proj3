@@ -292,7 +292,7 @@ void transpose_bcast_vector(const int n, double* col_vector, double* row_vector,
 
     if(rank == 0) {
         int count = block_decompose(n, q, rank);
-        memcpy (row_vector, col_vector, count*sizeof(double));
+        std::memcpy (row_vector, col_vector, count*sizeof(double));
     } else if(col_rank == 0) {
         int scount = block_decompose(n, q, row_rank);
         MPI_Send(col_vector, scount, MPI_DOUBLE, row_rank, 0, comm_row);
